@@ -59,27 +59,33 @@ namespace Snake
 
             transform.parent.GetComponent<PlayerSpeed>().index = index;
 
+            //when a new segment is added it remakes the tail
             RemakeTail();
         }
 
         void RemakeTail()
         {
+            //if a tail has already been created destry it
             if(currentTail != null)
             {
                 Destroy(currentTail);
             }
 
-            if(index == 0)
+            //if the snake has no segments set the tail poz to the head
+            if (index == 0)
             {
                 currentTail = (GameObject)Instantiate(tailPart, transform.position, Quaternion.Euler(Vector3.zero));
             }
+            //else set its poition to the last segment
             else
             {
                 currentTail = (GameObject)Instantiate(tailPart, bodyPieces[index - 1].transform.position, Quaternion.Euler(Vector3.zero));
             }
 
+            //set the parent
             currentTail.transform.SetParent(transform.parent.transform);
 
+            //set as the last sibling for neatness
             currentTail.transform.SetAsLastSibling();
         }
     }
