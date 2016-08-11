@@ -47,9 +47,34 @@ namespace Snake
             }
         }
 
-        void CheckCollision()
+        void OnTriggerEnter(Collider other)
         {
+            if(other.GetComponent<BodyScript>() != null)
+            {
+                BodyScript othersScript = other.GetComponent<BodyScript>();
 
+                if(othersScript.index > index)
+                {
+                    if(othersScript.index - 1 != index)
+                    {
+                        Time.timeScale = 0;
+                    }
+                }
+            }
+            else if(other.GetComponent<HeadScript>() != null)
+            {
+                if(index != 1)
+                {
+                    Time.timeScale = 0;
+                }
+            }
+            else if(other.GetComponent<TailScript>() != null)
+            {
+                if((index != transform.parent.transform.GetComponent<PlayerSpeed>().index) && (index != transform.parent.transform.GetComponent<PlayerSpeed>().index - 1))
+                {
+                    Time.timeScale = 0;
+                }
+            }
         }
     }
 }
