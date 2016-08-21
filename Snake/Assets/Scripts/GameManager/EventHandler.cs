@@ -18,6 +18,7 @@ namespace Snake
         public event GeneralEventHandler endGameCollisionEvent;
         public event GeneralEventHandler addSegmentEvent;
         public event GeneralEventHandler removeSegmentEvent;
+        public event GeneralEventHandler removeLanternEvent;
 
         public delegate void GameOverCollisionEventHandler(Vector3 position);
         public event GameOverCollisionEventHandler endGameCollisionPositionEvent;
@@ -59,6 +60,14 @@ namespace Snake
             if(removeSegmentEvent != null)
             {
                 removeSegmentEvent();
+            }
+        }
+
+        public void CallRemoveLanternEvent()
+        {
+            if (removeLanternEvent != null)
+            {
+                removeLanternEvent();
             }
         }
     }

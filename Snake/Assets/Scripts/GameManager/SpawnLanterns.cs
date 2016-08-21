@@ -22,35 +22,33 @@ namespace Snake
         void Start()
         {
             SetEvents();
+            SpawnLantern();
         }
 
         void SetEvents()
         {
             EventHandler.eventHandler.addSegmentEvent += RemoveLantern;
-            EventHandler.eventHandler.addSegmentEvent += SpawnLantern;
-        }
-
-        void Update()
-        {
-            if (lanternCount < maxLanterns)
-            {
-                if(Time.time > waitTime)
-                {
-                waitTime = Time.time + Random.Range(0.1f, 5.0f);
-                    SpawnLantern();
-                }
-            }
+            EventHandler.eventHandler.removeLanternEvent += RemoveLantern;
         }
 
         void RemoveLantern()
         {
             lanternCount--;
+            SpawnLantern();
         }
 
         void SpawnLantern()
-        {
-            Instantiate(lantern, RandomSpawnPozition(), Quaternion.identity);
-            lanternCount++;
+       {
+            if(lanternCount < maxLanterns)
+            {
+                int numberToSpawn = Random.Range(1, 4);
+
+                for(int i = 0; i < numberToSpawn; i++)
+                {
+                    Instantiate(lantern, RandomSpawnPozition(), Quaternion.identity);
+                    lanternCount++;
+                }
+            }
         }
 
         //ramdomizes each of the axis values
