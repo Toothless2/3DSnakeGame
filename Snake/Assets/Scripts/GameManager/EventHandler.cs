@@ -9,6 +9,7 @@ namespace Snake
 
         void Awake()
         {
+            Time.timeScale = 1;
             eventHandler = this;
         }
 
@@ -17,6 +18,9 @@ namespace Snake
         public event GeneralEventHandler endGameCollisionEvent;
         public event GeneralEventHandler addSegmentEvent;
         public event GeneralEventHandler removeSegmentEvent;
+
+        public delegate void GameOverCollisionEventHandler(Vector3 position);
+        public event GameOverCollisionEventHandler endGameCollisionPositionEvent;
 
         public void CallEndGameLowHealthEvent()
         {
@@ -31,6 +35,14 @@ namespace Snake
             if(endGameCollisionEvent != null)
             {
                 endGameCollisionEvent();
+            }
+        }
+
+        public void CallEndGameCollisionEvent(Vector3 position)
+        {
+            if(endGameCollisionPositionEvent != null)
+            {
+                endGameCollisionPositionEvent(position);
             }
         }
 

@@ -50,34 +50,35 @@ namespace Snake
         //chesk if the segment has collided with someting
         void OnTriggerEnter(Collider other)
         {
+            //print(other.transform.name);
             //checks what is has collidered with
             //if it has collider with a segment it checks that it is not the one directly infront as they can sometimes touch
-            if(other.GetComponent<BodyScript>() != null)
+            if(other.transform.GetComponent<BodyScript>() != null)
             {
-                BodyScript othersScript = other.GetComponent<BodyScript>();
+                BodyScript othersScript = other.transform.GetComponent<BodyScript>();
 
                 if(othersScript.index > index)
                 {
                     if(othersScript.index - 1 != index)
                     {
-                        EventHandler.eventHandler.CallEndGameCollisionEvent();
+                        EventHandler.eventHandler.CallEndGameCollisionEvent(other.transform.position);
                     }
                 }
             }
             //chesck it the segemtn has collided with the head and it is not the segment directly behind the head
-            else if(other.GetComponent<HeadScript>() != null)
+            else if(other.transform.GetComponent<HeadScript>() != null)
             {
                 if(index != 1)
                 {
-                    EventHandler.eventHandler.CallEndGameCollisionEvent();
+                    EventHandler.eventHandler.CallEndGameCollisionEvent(other.transform.position);
                 }
             }
             //checks if the segment has collided with the tail and if it is not the segmet directly or 2 setpps behind the tail
-            else if(other.GetComponent<TailScript>() != null)
+            else if(other.transform.GetComponent<TailScript>() != null)
             {
                 if((index != transform.parent.transform.GetComponent<PlayerSpeed>().index) && (index != transform.parent.transform.GetComponent<PlayerSpeed>().index - 1))
                 {
-                    EventHandler.eventHandler.CallEndGameCollisionEvent();
+                    EventHandler.eventHandler.CallEndGameCollisionEvent(other.transform.position);
                 }
             }
         }

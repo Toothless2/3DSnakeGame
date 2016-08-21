@@ -64,7 +64,6 @@ namespace Snake
         //starts time and reloads the level
         public void ReloadLevel()
         {
-            Time.timeScale = 1;
             SceneManager.LoadScene("scene");
         }
         

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 namespace Snake
 {
@@ -28,6 +27,7 @@ namespace Snake
         void SetEvents()
         {
             EventHandler.eventHandler.addSegmentEvent += RemoveLantern;
+            EventHandler.eventHandler.addSegmentEvent += SpawnLantern;
         }
 
         void Update()
@@ -36,6 +36,7 @@ namespace Snake
             {
                 if(Time.time > waitTime)
                 {
+                waitTime = Time.time + Random.Range(0.1f, 5.0f);
                     SpawnLantern();
                 }
             }
@@ -48,8 +49,6 @@ namespace Snake
 
         void SpawnLantern()
         {
-            waitTime = Time.time + Random.Range(0.1f, 5.0f);
-
             Instantiate(lantern, RandomSpawnPozition(), Quaternion.identity);
             lanternCount++;
         }

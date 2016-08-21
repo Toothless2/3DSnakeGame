@@ -12,7 +12,9 @@ namespace Snake
         * Allows FOV of the camera to be changed.
         * Will clamp the degrees the player can look to 90deg.
         */
-        
+
+        private bool canLook = true;
+
         //will invert mouse input
         public bool invertMouse;
         
@@ -47,8 +49,20 @@ namespace Snake
         
         void Start()
         {
+            SetEvents();
+
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        void SetEvents()
+        {
+            EventHandler.eventHandler.endGameCollisionPositionEvent += CanLook;
+        }
+
+        void CanLook(Vector3 foo)
+        {
+            canLook = !canLook;
         }
 
         void Update()
@@ -56,35 +70,43 @@ namespace Snake
             //allows controll of the FOV if the player camera
             Camera.main.fieldOfView = FOV;
 
-            if (Time.timeScale > 0)
+            if(canLook)
             {
-                if (!invertMouse)
+                if (Time.timeScale > 0)
                 {
-                    yRot += Input.GetAxis("Mouse X") * lookSensitivity;
-                    xRot -= Input.GetAxis("Mouse Y") * lookSensitivity;
+                    UpdateLook();
                 }
-                else
-                {
-                    yRot += Input.GetAxis("Mouse X") * lookSensitivity;
-                    xRot += Input.GetAxis("Mouse Y") * lookSensitivity;
-                }
-
-                if (!enableSmoothing)
-                {
-                    lookSmoothingX = 0;
-                    lookSmoothingY = 0;
-                }
-
-                //prevents player from spinnig around contantly;
-                xRot = Mathf.Clamp(xRot, -lookClamp, lookClamp);
-
-                //assigns a value to currentXRot variable and applies whatever smoothing is set
-                currentXRot = Mathf.SmoothDamp(currentXRot, xRot, ref xRotV, lookSmoothingY);
-                currentYRot = Mathf.SmoothDamp(currentYRot, yRot, ref yRotV, lookSmoothingX);
-
-                //takes the current x/y roations and applies them to the player
-                transform.rotation = Quaternion.Euler(currentXRot, currentYRot, 0);
             }
+        }
+
+        void UpdateLook()
+        {
+            if (!invertMouse)
+            {
+                yRot += Input.GetAxis("Mouse X") * lookSensitivity;
+                xRot -= Input.GetAxis("Mouse Y") * lookSensitivity;
+            }
+            else
+            {
+                yRot += Input.GetAxis("Mouse X") * lookSensitivity;
+                xRot += Input.GetAxis("Mouse Y") * lookSensitivity;
+            }
+
+            if (!enableSmoothing)
+            {
+                lookSmoothingX = 0;
+                lookSmoothingY = 0;
+            }
+
+            //prevents player from spinnig around contantly;
+            xRot = Mathf.Clamp(xRot, -lookClamp, lookClamp);
+
+            //assigns a value to currentXRot variable and applies whatever smoothing is set
+            currentXRot = Mathf.SmoothDamp(currentXRot, xRot, ref xRotV, lookSmoothingY);
+            currentYRot = Mathf.SmoothDamp(currentYRot, yRot, ref yRotV, lookSmoothingX);
+
+            //takes the current x/y roations and applies them to the player
+            transform.rotation = Quaternion.Euler(currentXRot, currentYRot, 0);
         }
 	}
 }
