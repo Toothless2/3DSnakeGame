@@ -398,7 +398,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 446310, guid: f6d6a9e462193c24cb02f9eb4d59a133, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11467118, guid: f6d6a9e462193c24cb02f9eb4d59a133, type: 2}
       propertyPath: count
@@ -408,6 +408,10 @@ Prefab:
       propertyPath: gameover
       value: 
       objectReference: {fileID: 1265196217}
+    - target: {fileID: 153858, guid: f6d6a9e462193c24cb02f9eb4d59a133, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6d6a9e462193c24cb02f9eb4d59a133, type: 2}
   m_IsPrefabParent: 0
@@ -881,7 +885,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 5d2e0ff395b756d47933381725d35ad3, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 5d2e0ff395b756d47933381725d35ad3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -946,6 +950,10 @@ Prefab:
     - target: {fileID: 400006, guid: 5d2e0ff395b756d47933381725d35ad3, type: 3}
       propertyPath: m_LocalScale.z
       value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 5d2e0ff395b756d47933381725d35ad3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d2e0ff395b756d47933381725d35ad3, type: 3}
@@ -1300,9 +1308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1408fd27a01ba40b5ade8a3a3bf30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lantern: {fileID: 179398, guid: a3c53a4412977444f800b65e52e85fc7, type: 2}
+  lantern: {fileID: 113502, guid: a3c53a4412977444f800b65e52e85fc7, type: 2}
   maxLanterns: 10
-  lanternCount: 0
   spawnLimits:
   - {fileID: 501297243}
   - {fileID: 2010161304}
