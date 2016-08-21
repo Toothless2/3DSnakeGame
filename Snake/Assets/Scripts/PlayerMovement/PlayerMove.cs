@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace Snake
 {
+    [RequireComponent(typeof (CharacterController))]
     public class PlayerMove : MonoBehaviour
     {
         /*
@@ -25,24 +26,27 @@ namespace Snake
 
         void Update()
         {
-            if(Input.GetAxis("SpeedAdjust") > 0)
+            if (Time.timeScale > 0)
             {
-                moveSpeed++;
+                if (Input.GetAxis("SpeedAdjust") > 0)
+                {
+                    moveSpeed++;
+                }
+
+                if (Input.GetAxis("SpeedAdjust") < 0)
+                {
+                    moveSpeed--;
+                }
+
+                moveSpeed = Mathf.Clamp(moveSpeed, 0.1f, 10.0f);
+
+                speed.speed = moveSpeed;
+
+                //converts the move speed into a direction
+                moveDirection = transform.forward * moveSpeed * Time.deltaTime;
+                //applies the movement
+                GetComponent<CharacterController>().Move(moveDirection);
             }
-
-            if(Input.GetAxis("SpeedAdjust") < 0)
-            {
-                moveSpeed--;
-            }
-
-            moveSpeed = Mathf.Clamp(moveSpeed, 0.1f, 10.0f);
-
-            speed.speed = moveSpeed;
-
-            //converts the move speed into a direction
-            moveDirection = transform.forward * moveSpeed * Time.deltaTime;
-            //applies the movement
-            GetComponent<CharacterController>().Move(moveDirection);
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Snake
             //if the head of the player collides with the spawner add a new segment and destry the segment spawner
             if (other.gameObject.GetComponent<HeadScript>() != null)
             {
-                other.gameObject.GetComponent<HeadScript>().AddPart();
+                EventHandler.eventHandler.CallAddSegmentEvent();
 
-                Destroy(gameObject);
+                Destroy(transform.parent.gameObject);
             }
         }
     }

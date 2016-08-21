@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace Snake
 {
+    [RequireComponent(typeof (PlayerMove))]
 	public class PlayerLook : MonoBehaviour
     {
         /*Allows player to look around game world. 
@@ -52,35 +53,38 @@ namespace Snake
 
         void Update()
         {
-            //allows controll of the FOv if the player camera
+            //allows controll of the FOV if the player camera
             Camera.main.fieldOfView = FOV;
 
-            if (!invertMouse)
+            if (Time.timeScale > 0)
             {
-                yRot += Input.GetAxis("Mouse X") * lookSensitivity;
-                xRot -= Input.GetAxis("Mouse Y") * lookSensitivity;
+                if (!invertMouse)
+                {
+                    yRot += Input.GetAxis("Mouse X") * lookSensitivity;
+                    xRot -= Input.GetAxis("Mouse Y") * lookSensitivity;
+                }
+                else
+                {
+                    yRot += Input.GetAxis("Mouse X") * lookSensitivity;
+                    xRot += Input.GetAxis("Mouse Y") * lookSensitivity;
+                }
+
+                if (!enableSmoothing)
+                {
+                    lookSmoothingX = 0;
+                    lookSmoothingY = 0;
+                }
+
+                //prevents player from spinnig around contantly;
+                xRot = Mathf.Clamp(xRot, -lookClamp, lookClamp);
+
+                //assigns a value to currentXRot variable and applies whatever smoothing is set
+                currentXRot = Mathf.SmoothDamp(currentXRot, xRot, ref xRotV, lookSmoothingY);
+                currentYRot = Mathf.SmoothDamp(currentYRot, yRot, ref yRotV, lookSmoothingX);
+
+                //takes the current x/y roations and applies them to the player
+                transform.rotation = Quaternion.Euler(currentXRot, currentYRot, 0);
             }
-            else
-            {
-                yRot += Input.GetAxis("Mouse X") * lookSensitivity;
-                xRot += Input.GetAxis("Mouse Y") * lookSensitivity;
-            }
-
-            if (!enableSmoothing)
-            {
-                lookSmoothingX = 0;
-                lookSmoothingY = 0;
-            }
-
-            //prevents player from spinnig around contantly;
-            xRot = Mathf.Clamp(xRot, -lookClamp, lookClamp);
-
-            //assigns a value to currentXRot variable and applies whatever smoothing is set
-            currentXRot = Mathf.SmoothDamp(currentXRot, xRot, ref xRotV, lookSmoothingY);
-            currentYRot = Mathf.SmoothDamp(currentYRot, yRot, ref yRotV, lookSmoothingX);
-
-            //takes the current x/y roations and applies them to the player
-            transform.rotation = Quaternion.Euler(currentXRot, currentYRot, 0);
         }
 	}
 }

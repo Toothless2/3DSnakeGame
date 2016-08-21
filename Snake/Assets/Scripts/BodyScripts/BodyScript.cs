@@ -60,7 +60,7 @@ namespace Snake
                 {
                     if(othersScript.index - 1 != index)
                     {
-                        Time.timeScale = 0;
+                        EventHandler.eventHandler.CallEndGameCollisionEvent();
                     }
                 }
             }
@@ -69,7 +69,7 @@ namespace Snake
             {
                 if(index != 1)
                 {
-                    Time.timeScale = 0;
+                    EventHandler.eventHandler.CallEndGameCollisionEvent();
                 }
             }
             //checks if the segment has collided with the tail and if it is not the segmet directly or 2 setpps behind the tail
@@ -77,7 +77,7 @@ namespace Snake
             {
                 if((index != transform.parent.transform.GetComponent<PlayerSpeed>().index) && (index != transform.parent.transform.GetComponent<PlayerSpeed>().index - 1))
                 {
-                    Time.timeScale = 0;
+                    EventHandler.eventHandler.CallEndGameCollisionEvent();
                 }
             }
         }
