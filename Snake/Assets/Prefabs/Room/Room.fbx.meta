@@ -1,31 +1,30 @@
 fileFormatVersion: 2
-guid: f5a5a54150f82c14b84a29a4799fd20a
-timeCreated: 1471339067
+guid: 5d2e0ff395b756d47933381725d35ad3
+timeCreated: 1471705374
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Camera
-    100004: Lamp
-    100006: Pillar.001
-    100008: Pillar.002
-    100010: TopBar
-    400000: //RootNode
-    400002: Camera
-    400004: Lamp
-    400006: Pillar.001
-    400008: Pillar.002
-    400010: TopBar
-    2300000: Pillar.001
-    2300002: Pillar.002
-    2300004: TopBar
-    3300000: Pillar.001
-    3300002: Pillar.002
-    3300004: TopBar
-    4300000: Pillar.002
-    4300002: Pillar.001
-    4300004: TopBar
+    100000: Pillars
+    100002: Roof
+    100004: //RootNode
+    100006: Cube
+    400000: Pillars
+    400002: Roof
+    400004: //RootNode
+    400006: Cube
+    2300000: Pillars
+    2300002: Roof
+    2300004: Cube
+    3300000: Pillars
+    3300002: Roof
+    3300004: Cube
+    4300000: Pillars
+    4300002: Roof
+    4300004: Cube
+    6400000: Cube
+    6400002: Pillars
+    6400004: Roof
   materials:
     importMaterials: 1
     materialName: 0
@@ -52,7 +51,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -69,7 +68,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
