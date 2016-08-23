@@ -7,30 +7,23 @@ namespace Snake
     public class LengthCounter : MonoBehaviour
     {
         public Text counter;
-        int number = 1;
+        int number = 0;
 
-        void Start()
+        void Awake()
         {
             SetEvents();
-            counter.enabled = false;
         }
 
         void SetEvents()
         {
+            EventHandler.eventHandler.startGameEvent += AddToCounter;
             EventHandler.eventHandler.addSegmentEvent += AddToCounter;
             EventHandler.eventHandler.removeSegmentEvent += RemoveFromCounter;
-            EventHandler.eventHandler.endGameCollisionEvent += HideOnGameOver;
-            EventHandler.eventHandler.endGamelowHealthEvent += HideOnGameOver;
         }
 
         //adds one to the length counter
         void AddToCounter()
         {
-            if(!(counter.enabled))
-            {
-                counter.enabled = true;
-            }
-
             counter.text = "Length: " + number;
             number++;
         }
@@ -43,13 +36,6 @@ namespace Snake
                 number--;
                 counter.text = "Length: " + number;
             }
-        }
-
-        //hides the overloay on game over
-        void HideOnGameOver()
-        {
-            number = 1;
-            counter.gameObject.SetActive(false);
         }
     }
 }

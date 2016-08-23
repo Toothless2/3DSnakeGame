@@ -14,14 +14,14 @@ namespace Snake
 
         private GameObject currentTail;
 
-        void Start()
+        void Awake()
         {
             SetEvents();
-            FirstPart();
         }
 
         void SetEvents()
         {
+            EventHandler.eventHandler.startGameEvent += FirstPart;
             EventHandler.eventHandler.addSegmentEvent += AddPart;
             EventHandler.eventHandler.removeSegmentEvent += RemovePart;
         }

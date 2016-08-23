@@ -9,7 +9,7 @@ namespace Snake
     {
         public GameObject gameOverUI;
 
-        void Start()
+        void Awake()
         {
             SetEvents();
         }

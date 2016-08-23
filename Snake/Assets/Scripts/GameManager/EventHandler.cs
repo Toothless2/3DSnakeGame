@@ -14,6 +14,7 @@ namespace Snake
         }
 
         public delegate void GeneralEventHandler();
+        public event GeneralEventHandler startGameEvent;
         public event GeneralEventHandler endGamelowHealthEvent;
         public event GeneralEventHandler endGameCollisionEvent;
         public event GeneralEventHandler addSegmentEvent;
@@ -22,6 +23,14 @@ namespace Snake
 
         public delegate void GameOverCollisionEventHandler(Vector3 position);
         public event GameOverCollisionEventHandler endGameCollisionPositionEvent;
+
+        public void CallStartGameEvent()
+        {
+            if(startGameEvent != null)
+            {
+                startGameEvent();
+            }
+        }
 
         public void CallEndGameLowHealthEvent()
         {

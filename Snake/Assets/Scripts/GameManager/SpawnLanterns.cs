@@ -19,31 +19,46 @@ namespace Snake
 
         private float waitTime;
 
-        void Start()
+        void Awake()
         {
             SetEvents();
-            SpawnLantern();
         }
 
         void SetEvents()
         {
-            EventHandler.eventHandler.addSegmentEvent += RemoveLantern;
-            EventHandler.eventHandler.removeLanternEvent += RemoveLantern;
+            EventHandler.eventHandler.startGameEvent += SpawnLantern;
+            EventHandler.eventHandler.addSegmentEvent += LanternEaten;
+            EventHandler.eventHandler.removeLanternEvent += LanternDespawn;
         }
 
-        void RemoveLantern()
+        void LanternDespawn()
+        {
+            lanternCount--;
+            ReplaceLantern();
+        }
+
+        void LanternEaten()
         {
             lanternCount--;
             SpawnLantern();
         }
 
+        void ReplaceLantern()
+        {
+            if (lanternCount < maxLanterns)
+            {
+                Instantiate(lantern, RandomSpawnPozition(), Quaternion.identity);
+                lanternCount++;
+            }
+        }
+
         void SpawnLantern()
-       {
-            if(lanternCount < maxLanterns)
+        {
+            if (lanternCount < maxLanterns)
             {
                 int numberToSpawn = Random.Range(1, 4);
 
-                for(int i = 0; i < numberToSpawn; i++)
+                for (int i = 0; i < numberToSpawn; i++)
                 {
                     Instantiate(lantern, RandomSpawnPozition(), Quaternion.identity);
                     lanternCount++;

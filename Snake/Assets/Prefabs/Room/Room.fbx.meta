@@ -9,22 +9,28 @@ ModelImporter:
     100002: Roof
     100004: //RootNode
     100006: Cube
+    100008: Wall
     400000: Pillars
     400002: Roof
     400004: //RootNode
     400006: Cube
+    400008: Wall
     2300000: Pillars
     2300002: Roof
     2300004: Cube
+    2300006: Wall
     3300000: Pillars
     3300002: Roof
     3300004: Cube
+    3300006: Wall
     4300000: Pillars
     4300002: Roof
     4300004: Cube
+    4300006: Wall
     6400000: Cube
     6400002: Pillars
     6400004: Roof
+    6400006: Wall
   materials:
     importMaterials: 1
     materialName: 0

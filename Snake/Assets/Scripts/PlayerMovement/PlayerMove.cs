@@ -23,6 +23,7 @@ namespace Snake
 
         void Start()
         {
+            SetEvents();
             speed = transform.parent.transform.GetComponent<PlayerSpeed>();
         }
 
@@ -66,7 +67,7 @@ namespace Snake
 
         void CanMove(Vector3 foo)
         {
-            canMove = !canMove;
+            canMove = false;
         }
     }
 }
