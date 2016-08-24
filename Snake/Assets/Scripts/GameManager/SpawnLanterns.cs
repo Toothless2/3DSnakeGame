@@ -17,8 +17,6 @@ namespace Snake
 
         public Transform[] spawnLimits;
 
-        private float waitTime;
-
         void Awake()
         {
             SetEvents();
