@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using System;
+using System.IO;
+using LitJson;
 
 namespace Snake
 {
@@ -42,14 +43,7 @@ namespace Snake
         //Anisotropic
         public Dropdown anisotropicDropdown;
         string[] anisotropicOptions = new string[3];
-
-        /*
-        void Start()
-        {
-            FirstLoad();
-            UpdateSettings();
-        }
-        */
+        
         public void FirstLoad()
         {
             SetResolutions();
@@ -70,8 +64,12 @@ namespace Snake
             TextureQuality();
             AA();
             AnisotropicFiltering();
+
+            //loads the settings if the settings file exists
+            LoadSettings();
         }
 
+        //gets all of the resolutions avaliable the user
         void SetResolutions()
         {
             resolutionDropdown.ClearOptions();
@@ -92,6 +90,7 @@ namespace Snake
             fullscreen = !fullscreen;
         }
 
+        //sets the default refresh rate
         void RefreshRate()
         {
             refreshRateDropdown.ClearOptions();
@@ -108,6 +107,7 @@ namespace Snake
             refreshRateDropdown.value = 1;
         }
 
+        //sets the VSync options defult to every VBlank
         void VSyncOptions()
         {
             vSyncDropdown.ClearOptions();
@@ -124,6 +124,7 @@ namespace Snake
             vSyncDropdown.value = 1;
         }
 
+        //sets the maximum mitmap level for textures
         void TextureQuality()
         {
             textureQualityDropdown.ClearOptions();
@@ -142,6 +143,7 @@ namespace Snake
             textureQualityDropdown.value = 0;
         }
 
+        //sets the dropdown for AA with the default level of 2x MSAA
         void AA()
         {
             aADropdown.ClearOptions();
@@ -159,13 +161,14 @@ namespace Snake
                 }
                 else
                 {
-                    aADropdown.options.Add(new Dropdown.OptionData() { text = aALvl.ToString() + "x SMAA" });
+                    aADropdown.options.Add(new Dropdown.OptionData() { text = aALvl.ToString() + "x MSAA" });
                 }
             }
 
             aADropdown.value = 1;
         }
 
+        //sets the dropdown for the AF options with a default level of all textures
         void AnisotropicFiltering()
         {
             anisotropicDropdown.ClearOptions();
@@ -184,30 +187,70 @@ namespace Snake
 
         public void UpdateSettings()
         {
-            SaveSettings();
-
+            //sets the fullscreen
             Screen.fullScreen = fullscreen;
+            //sets the resolution and the refresh rate
             Screen.SetResolution(resolutions[resolutionDropdown.value].width, resolutions[resolutionDropdown.value].height, fullscreen, refreshRates[refreshRateDropdown.value]);
 
+            //sets the quality settings
             QualitySettings.vSyncCount = vSyncDropdown.value;
             QualitySettings.masterTextureLimit = textureQualityDropdown.value;
             QualitySettings.antiAliasing = aAOptions[aADropdown.value];
             QualitySettings.anisotropicFiltering = (AnisotropicFiltering)anisotropicDropdown.value;
+
+            //Saves the settings
+            SaveSettings();
         }
 
         public void LoadSettings()
         {
+            //it should never not exist but humas are idiots and will delets it as some point
+            if(File.Exists(Application.dataPath + "/Resources/Settings.json"))
+            {
+                string jsonData;
+                JsonData settingsData;
 
+                //the data from the json file is put into a string
+                jsonData = File.ReadAllText(Application.dataPath + "/Resources/Settings.json");
+
+                //the json data is formatted into a dictionary
+                settingsData = JsonMapper.ToObject(jsonData);
+
+                //the serrings are applied
+                fullscreen = (bool)settingsData["Fullscreen"];
+                refreshRateDropdown.value = (int)settingsData["RefreshRate"];
+                resolutionDropdown.value = (int)settingsData["Resolution"];
+                vSyncDropdown.value = (int)settingsData["VSyncOption"];
+                textureQualityDropdown.value = (int)settingsData["TextureQuality"];
+                aADropdown.value = (int)settingsData["AAOption"];
+                anisotropicDropdown.value = (int)settingsData["AFOption"];
+
+                UpdateSettings();
+            }
         }
 
         void SaveSettings()
         {
+            //sets the values to temp variables
+            //TODO remove
             currentRefreshRate = refreshRateDropdown.value;
             currentResolution = resolutionDropdown.value;
             currentVSyncOption = vSyncDropdown.value;
             currentTextureQuality = textureQualityDropdown.value;
             currentAAOption = aADropdown.value;
             currentAFOption = anisotropicDropdown.value;
+
+            //saves the settings to the settings class
+            Settings settings = new Settings("Editing this File is NOT reccomended - if game crashes after editing DELETE THIS FILE", fullscreen, currentRefreshRate, currentResolution, currentVSyncOption, currentTextureQuality, currentAAOption, currentAFOption);
+            
+            //makes a JsonData object to that the variabls of the class can be converted
+            JsonData settingsJson;
+
+            //converts the settings into JsonData
+            settingsJson = JsonMapper.ToJson(settings);
+
+            //writes the JsonData File
+            File.WriteAllText(Application.dataPath + "/Resources/Settings.json", settingsJson.ToString());
         }
     }
 }

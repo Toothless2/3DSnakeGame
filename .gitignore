@@ -4,11 +4,6 @@
 */Builds/
 */.vs/
 
-#revert someIgnoreing
-!*/Assets/
-!*/ProjectSettings/
-!.gitignore
-
 #osThings
 .DS_Store
 ._*
@@ -33,3 +28,4 @@ sysinfo.txt
 #VisualStudio generated Files
 *.sln
 *.csproj
+*.suo
