@@ -3,12 +3,17 @@ using UnityEngine.EventSystems;
 
 namespace Snake
 {
-    public class RemoveDropdown : MonoBehaviour, IPointerExitHandler
+    public class RemoveDropdown : MonoBehaviour
     {
-        public void OnPointerExit(PointerEventData eventData)
+        void Update()
         {
-            Destroy(GameObject.Find("Blocker"));
-            Destroy(gameObject);
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                if(GameObject.Find("Dropdown List") != null)
+                {
+                    Destroy(GameObject.Find("Dropdown List").gameObject);
+                }
+            }
         }
     }
 }

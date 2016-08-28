@@ -69,6 +69,11 @@ namespace Snake
             LoadSettings();
         }
 
+        void ToggleFullscreen()
+        {
+            fullscreen = !fullscreen;
+        }
+
         //gets all of the resolutions avaliable the user
         void SetResolutions()
         {
@@ -82,12 +87,7 @@ namespace Snake
                 resolutionDropdown.options.Add(new Dropdown.OptionData() { text = resolutionText });
             }
 
-            resolutionDropdown.value = 0;
-        }
-
-        void ToggleFullscreen()
-        {
-            fullscreen = !fullscreen;
+            resolutionDropdown.value = resolutions.Length;
         }
 
         //sets the default refresh rate

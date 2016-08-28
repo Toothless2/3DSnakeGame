@@ -51,6 +51,8 @@ namespace Snake
         {
             SetEvents();
 
+            lookSensitivity = CurrentKeybindings.lookSensitivity;
+
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }

@@ -3,17 +3,13 @@ using System.Collections;
 
 namespace Snake
 {
-    public class LoadOptionsMenu : MonoBehaviour
+    public class BackToOptions : MonoBehaviour
     {
         public GameObject optionsMenu;
 
-        public void HideMain()
+        public void ToOptions()
         {
             gameObject.SetActive(false);
-        }
-
-        public void ShowOptions()
-        {
             optionsMenu.SetActive(true);
         }
     }

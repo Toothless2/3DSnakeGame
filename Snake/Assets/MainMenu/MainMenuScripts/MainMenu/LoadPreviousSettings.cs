@@ -2,14 +2,17 @@
 
 namespace Snake
 {
-    public class LoadSettingsMenu : MonoBehaviour
+    public class LoadPreviousSettings : MonoBehaviour
     {
         public GraphicsOptions options;
+        public RebindKey bind;
 
         void Start()
         {
             options.FirstLoad();
             options.UpdateSettings();
+
+            bind.LoadKeyBindings();
         }
     }
 }

@@ -21,6 +21,8 @@ namespace Snake
 
         private PlayerSpeed speed;
 
+        private CurrentKeybindings keybindings;
+
         void Start()
         {
             SetEvents();
@@ -45,15 +47,39 @@ namespace Snake
 
         void MovePlayer()
         {
-            if (Input.GetAxis("SpeedAdjust") > 0)
+            #region SpeedUpInputc
+            if (CurrentKeybindings.speedUp != KeyCode.None)
             {
-                moveSpeed++;
+                if (Input.GetKeyDown(CurrentKeybindings.speedUp))
+                {
+                    moveSpeed++;
+                }
             }
+            else
+            {
+                if (Input.GetAxis("SpeedAdjust") > 0)
+                {
+                    moveSpeed++;
+                }
+            }
+            #endregion SpeedUpInput
 
-            if (Input.GetAxis("SpeedAdjust") < 0)
+            #region SpeedDownInput
+            if (CurrentKeybindings.speedDown != KeyCode.None)
             {
-                moveSpeed--;
+                if (Input.GetKeyDown(CurrentKeybindings.speedDown))
+                {
+                    moveSpeed--;
+                }
             }
+            else
+            {
+                if (Input.GetAxis("SpeedAdjust") < 0)
+                {
+                    moveSpeed--;
+                }
+            }
+            #endregion SpeedDownInput
 
             moveSpeed = Mathf.Clamp(moveSpeed, 0.1f, 10.0f);
 
