@@ -64,7 +64,7 @@ namespace Snake
         //starts time and reloads the level
         public void ReloadLevel()
         {
-            SceneManager.LoadScene("scene");
+            SceneManager.LoadScene("Singleplayer");
         }
         
         //exits the game

@@ -489,7 +489,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 319.5, y: -420}
+  m_AnchoredPosition: {x: 319.5, y: -420.10486}
   m_SizeDelta: {x: 459, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &72783042
@@ -617,7 +617,7 @@ RectTransform:
   m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 319.5, y: -800}
+  m_AnchoredPosition: {x: 319.5, y: -800.10486}
   m_SizeDelta: {x: 459, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &113841490
@@ -1128,7 +1128,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 319.5, y: -325}
+  m_AnchoredPosition: {x: 319.5, y: -325.10486}
   m_SizeDelta: {x: 459, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &255513270
@@ -1726,7 +1726,7 @@ RectTransform:
   m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 319.5, y: -705}
+  m_AnchoredPosition: {x: 319.5, y: -705.10486}
   m_SizeDelta: {x: 459, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340937004
@@ -4549,7 +4549,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90, y: -257.5}
+  m_AnchoredPosition: {x: 90, y: -257.60486}
   m_SizeDelta: {x: 459, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &902028499
@@ -7420,7 +7420,7 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 319.5, y: -610}
+  m_AnchoredPosition: {x: 319.5, y: -610.10486}
   m_SizeDelta: {x: 459, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1347334590
@@ -7821,7 +7821,7 @@ RectTransform:
   m_RootOrder: 10
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 319.5, y: -895}
+  m_AnchoredPosition: {x: 319.5, y: -895.10486}
   m_SizeDelta: {x: 459, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1451127323
@@ -10279,7 +10279,7 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 319.5, y: -515}
+  m_AnchoredPosition: {x: 319.5, y: -515.10486}
   m_SizeDelta: {x: 459, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1929756774
