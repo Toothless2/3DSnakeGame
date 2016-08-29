@@ -7,7 +7,7 @@ namespace Snake
     {
         public GameObject keybindingsMenuPosition;
         public GameObject keybindingsMenuRotation;
-        public BackToMainMenu loadMenu;
+        public SwitchMenus loadMenu;
 
         public bool returnToMenu;
 

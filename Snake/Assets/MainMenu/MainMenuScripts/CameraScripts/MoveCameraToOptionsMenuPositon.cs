@@ -7,15 +7,14 @@ namespace Snake
     {
         public GameObject optionsMenuPosition;
         public GameObject optionsMenuRotation;
-        public LoadOptionsMenu loadMenu;
-        public BackToMainMenu keyb;
+        public SwitchMenus keyb;
 
         public bool returnToMenu;
 
         public void ToOptions()
         {
             returnToMenu = true;
-            loadMenu.HideMain();
+            keyb.HideMain();
             keyb.HideKeybindings();
         }
 
@@ -28,7 +27,7 @@ namespace Snake
                 if (Vector3.Distance(transform.position, optionsMenuPosition.transform.position) < 0.1f)
                 {
                     returnToMenu = false;
-                    loadMenu.ShowOptions();
+                    keyb.ShowOptions();
                     GetComponent<Transform>().position = optionsMenuPosition.transform.position;
                     transform.LookAt(optionsMenuRotation.transform);
                 }

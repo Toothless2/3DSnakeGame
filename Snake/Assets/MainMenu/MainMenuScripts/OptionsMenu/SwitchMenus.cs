@@ -3,24 +3,30 @@ using System.Collections;
 
 namespace Snake
 {
-    public class BackToMainMenu : MonoBehaviour
+    public class SwitchMenus : MonoBehaviour
     {
         public GameObject mainMenu;
+        public GameObject optionsMenu;
         public GameObject keybindingsMenu;
 
         public void HideOptions()
         {
-            gameObject.SetActive(false);
+            optionsMenu.SetActive(false);
         }
 
         public void ShowOptions()
         {
-            gameObject.SetActive(true);
+            optionsMenu.SetActive(true);
         }
 
         public void ShowMain()
         {
             mainMenu.SetActive(true);
+        }
+
+        public void HideMain()
+        {
+            mainMenu.SetActive(false);
         }
 
         public void ToKeyBindings()

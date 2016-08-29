@@ -32,6 +32,8 @@ namespace Snake
 
         void Update()
         {
+            //when a key is pressed is sets the inout variable to that keycode
+
             input = KeyCode.None;
 
             if(rebindSpeedUp)
@@ -73,6 +75,7 @@ namespace Snake
             tempSpeedDown = KeyCode.None;
         }
 
+        //rests the keybindings to the default
         public void ResetKeyBindings()
         {
             sensitivitySlider.value = 5;
@@ -87,6 +90,7 @@ namespace Snake
             SaveKeybindings();
         }
 
+        //loads the keybindings at the startof the game
         public void LoadKeyBindings()
         {
             if (File.Exists(Application.dataPath + "/Resources/Settings.json"))
@@ -126,6 +130,7 @@ namespace Snake
             }
         }
 
+        // saves the keybindings so the they can be used in game
         public void SaveKeybindings()
         {
             CurrentKeybindings.lookSensitivity = (int)sensitivitySlider.value;

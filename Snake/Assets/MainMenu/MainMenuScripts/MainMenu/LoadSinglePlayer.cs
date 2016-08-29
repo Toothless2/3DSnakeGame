@@ -7,7 +7,7 @@ namespace Snake
     {
         public void PlayeSinglePlayer()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("SinglePlayer");
         }
     }
 }

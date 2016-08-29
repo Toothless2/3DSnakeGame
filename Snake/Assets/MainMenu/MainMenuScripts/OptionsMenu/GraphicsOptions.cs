@@ -15,6 +15,7 @@ namespace Snake
         int currentTextureQuality;
         int currentAAOption;
         int currentAFOption;
+        int currentFOVoption;
 
         //is the Game Fulscreen?
         public bool fullscreen = true;
@@ -43,6 +44,9 @@ namespace Snake
         //Anisotropic
         public Dropdown anisotropicDropdown;
         string[] anisotropicOptions = new string[3];
+
+        //FOV options
+        public Slider fOVSlider;
         
         public void FirstLoad()
         {
@@ -64,6 +68,7 @@ namespace Snake
             TextureQuality();
             AA();
             AnisotropicFiltering();
+            FOV();
 
             //loads the settings if the settings file exists
             LoadSettings();
@@ -185,6 +190,23 @@ namespace Snake
             anisotropicDropdown.value = 2;
         }
 
+        public void FOV()
+        {
+            Settings.FOV = (int)fOVSlider.value;
+        }
+
+        public void ResetToPrevious()
+        {
+            fOVSlider.value = Settings.FOV = currentFOVoption;
+            fullscreenToggleButton.isOn = fullscreen;
+            refreshRateDropdown.value = currentRefreshRate;
+            resolutionDropdown.value = currentResolution;
+            vSyncDropdown.value = currentVSyncOption;
+            textureQualityDropdown.value = currentTextureQuality;
+            currentAAOption = aADropdown.value;
+            currentAFOption = anisotropicDropdown.value;
+        }
+
         public void UpdateSettings()
         {
             //sets the fullscreen
@@ -218,12 +240,13 @@ namespace Snake
 
                 //the serrings are applied
                 fullscreen = (bool)settingsData["Fullscreen"];
-                refreshRateDropdown.value = (int)settingsData["RefreshRate"];
-                resolutionDropdown.value = (int)settingsData["Resolution"];
-                vSyncDropdown.value = (int)settingsData["VSyncOption"];
-                textureQualityDropdown.value = (int)settingsData["TextureQuality"];
-                aADropdown.value = (int)settingsData["AAOption"];
-                anisotropicDropdown.value = (int)settingsData["AFOption"];
+                refreshRateDropdown.value = currentRefreshRate = (int)settingsData["RefreshRate"];
+                resolutionDropdown.value = currentResolution = (int)settingsData["Resolution"];
+                vSyncDropdown.value = currentVSyncOption = (int)settingsData["VSyncOption"];
+                textureQualityDropdown.value = currentTextureQuality = (int)settingsData["TextureQuality"];
+                aADropdown.value = aADropdown.value = (int)settingsData["AAOption"];
+                anisotropicDropdown.value = anisotropicDropdown.value = (int)settingsData["AFOption"];
+                fOVSlider.value = currentFOVoption = (int)settingsData["FOV"];
 
                 UpdateSettings();
             }
@@ -239,9 +262,10 @@ namespace Snake
             currentTextureQuality = textureQualityDropdown.value;
             currentAAOption = aADropdown.value;
             currentAFOption = anisotropicDropdown.value;
+            currentFOVoption = (int)fOVSlider.value;
 
             //saves the settings to the settings class
-            Settings settings = new Settings("Editing this File is NOT reccomended - if game crashes after editing DELETE THIS FILE", fullscreen, currentRefreshRate, currentResolution, currentVSyncOption, currentTextureQuality, currentAAOption, currentAFOption);
+            Settings settings = new Settings("Editing this File is NOT reccomended - if game crashes after editing DELETE THIS FILE", fullscreen, currentRefreshRate, currentResolution, currentVSyncOption, currentTextureQuality, currentAAOption, currentAFOption, (int)fOVSlider.value);
             
             //makes a JsonData object to that the variabls of the class can be converted
             JsonData settingsJson;

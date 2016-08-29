@@ -13,7 +13,7 @@ namespace Snake
         * Will clamp the degrees the player can look to 90deg.
         */
 
-        private bool canLook = true;
+        public bool canLook = true;
 
         //will invert mouse input
         public bool invertMouse;
@@ -49,12 +49,15 @@ namespace Snake
         
         void Start()
         {
-            SetEvents();
+            if (canLook)
+            {
+                SetEvents();
 
-            lookSensitivity = CurrentKeybindings.lookSensitivity;
+                lookSensitivity = CurrentKeybindings.lookSensitivity;
 
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
 
         void SetEvents()
@@ -70,7 +73,7 @@ namespace Snake
         void Update()
         {
             //allows controll of the FOV if the player camera
-            Camera.main.fieldOfView = FOV;
+            Camera.main.fieldOfView = Settings.FOV;
 
             if(canLook)
             {

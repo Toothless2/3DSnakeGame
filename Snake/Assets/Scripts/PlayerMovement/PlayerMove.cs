@@ -11,7 +11,7 @@ namespace Snake
         * Speed can be changed eith by player input or in inspector
         */
 
-        private bool canMove = true;
+        public bool canMove = true;
 
         //move speed is clamped
         [Range(0.0f, 10.0f)]
