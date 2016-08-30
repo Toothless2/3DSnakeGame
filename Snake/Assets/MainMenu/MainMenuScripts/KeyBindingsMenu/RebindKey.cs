@@ -25,6 +25,11 @@ namespace Snake
 
         void Start()
         {
+            FirstLoad();
+        }
+
+        public void FirstLoad()
+        {
             originalSensitivity = sensitivitySlider.value;
             originalSpeedUpText = speedUpButtonText.text;
             originalSpeedDownText = speedDownButtonText.text;
@@ -90,10 +95,10 @@ namespace Snake
             SaveKeybindings();
         }
 
-        //loads the keybindings at the startof the game
+        //loads the keybindings at the start of the game
         public void LoadKeyBindings()
         {
-            if (File.Exists(Application.dataPath + "/Resources/Settings.json"))
+            if (File.Exists(Application.dataPath + "/Resources/Keybindings.json"))
             {
                 string jsonData;
                 JsonData bindingsJson;
@@ -127,6 +132,10 @@ namespace Snake
                 {
                     speedUpButtonText.text = CurrentKeybindings.speedUp.ToString();
                 }
+            }
+            else
+            {
+                SaveKeybindings();
             }
         }
 

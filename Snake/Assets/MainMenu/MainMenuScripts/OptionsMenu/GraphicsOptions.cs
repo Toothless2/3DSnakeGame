@@ -74,7 +74,7 @@ namespace Snake
             LoadSettings();
         }
 
-        void ToggleFullscreen()
+        public void ToggleFullscreen()
         {
             fullscreen = !fullscreen;
         }
@@ -197,7 +197,6 @@ namespace Snake
 
         public void ResetToPrevious()
         {
-            fOVSlider.value = Settings.FOV = currentFOVoption;
             fullscreenToggleButton.isOn = fullscreen;
             refreshRateDropdown.value = currentRefreshRate;
             resolutionDropdown.value = currentResolution;
