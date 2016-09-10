@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 namespace Snake
@@ -85,6 +86,8 @@ namespace Snake
         public void BackToMain()
         {
             Time.timeScale = 1;
+            Debug.Assert(Time.timeScale == 1);
+
             SceneManager.LoadScene("MainMenu");
         }
 

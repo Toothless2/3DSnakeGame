@@ -12,7 +12,9 @@ namespace Snake
         {
             camera.enabled = false;
 
-            Debug.Assert(Time.timeScale != 0);
+            Time.timeScale = 1;
+
+            Debug.Assert(Time.timeScale > 0);
 
             //print(Constants.firstLoad);
 
