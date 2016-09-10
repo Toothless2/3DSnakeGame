@@ -7,6 +7,11 @@ namespace RougeLike3D
     {
         public Slider slider;
 
+        void Start()
+        {
+            GetComponent<Text>().text = slider.value.ToString();
+        }
+
         public void UpdateText()
         {
             GetComponent<Text>().text = slider.value.ToString();
