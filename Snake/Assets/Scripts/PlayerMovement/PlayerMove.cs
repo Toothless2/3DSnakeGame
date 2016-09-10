@@ -47,7 +47,7 @@ namespace Snake
 
         void MovePlayer()
         {
-            #region SpeedUpInputc
+            #region SpeedUpInput
             if (CurrentKeybindings.speedUp != KeyCode.None)
             {
                 if (Input.GetKeyDown(CurrentKeybindings.speedUp))

@@ -218,9 +218,6 @@ namespace Snake
             QualitySettings.masterTextureLimit = textureQualityDropdown.value;
             QualitySettings.antiAliasing = aAOptions[aADropdown.value];
             QualitySettings.anisotropicFiltering = (AnisotropicFiltering)anisotropicDropdown.value;
-
-            //Saves the settings
-            SaveSettings();
         }
 
         public void LoadSettings()
@@ -247,11 +244,15 @@ namespace Snake
                 anisotropicDropdown.value = anisotropicDropdown.value = (int)settingsData["AFOption"];
                 fOVSlider.value = currentFOVoption = (int)settingsData["FOV"];
 
-                UpdateSettings();
+                Debug.Assert(refreshRateDropdown.value == currentRefreshRate);
+            }
+            else
+            {
+                SaveSettings();
             }
         }
 
-        void SaveSettings()
+        public void SaveSettings()
         {
             //sets the values to temp variables
             //TODO remove

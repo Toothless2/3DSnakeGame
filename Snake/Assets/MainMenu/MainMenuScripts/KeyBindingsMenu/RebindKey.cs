@@ -23,16 +23,13 @@ namespace Snake
         public Slider sensitivitySlider;
         private float originalSensitivity;
 
-        void Start()
-        {
-            FirstLoad();
-        }
-
         public void FirstLoad()
         {
             originalSensitivity = sensitivitySlider.value;
             originalSpeedUpText = speedUpButtonText.text;
             originalSpeedDownText = speedDownButtonText.text;
+
+            LoadKeyBindings();
         }
 
         void Update()
@@ -126,11 +123,11 @@ namespace Snake
 
                 if (CurrentKeybindings.speedDown == KeyCode.None)
                 {
-                    speedUpButtonText.text = "Scroll Up";
+                    speedDownButtonText.text = "Scroll Up";
                 }
                 else
                 {
-                    speedUpButtonText.text = CurrentKeybindings.speedUp.ToString();
+                    speedDownButtonText.text = CurrentKeybindings.speedDown.ToString();
                 }
             }
             else

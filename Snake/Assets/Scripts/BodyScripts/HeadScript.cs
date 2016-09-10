@@ -53,7 +53,7 @@ namespace Snake
             GameObject newPart;
 
             /*
-            * Will spawn a new part bihind the last object in the array
+            * Will spawn a new part behind the last object in the array
             * Then set the parent to the player containter
             * Then makes it the last sibling for neatness
             * then adds the new part to the list

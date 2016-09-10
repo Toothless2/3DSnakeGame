@@ -11,8 +11,22 @@ namespace Snake
         void Awake()
         {
             camera.enabled = false;
-            options.FirstLoad();
-            options.UpdateSettings();
+
+            Debug.Assert(Time.timeScale != 0);
+
+            //print(Constants.firstLoad);
+
+            if (Constants.firstLoad)
+            {
+                options.FirstLoad();
+                options.UpdateSettings();
+                options.SaveSettings();
+                Constants.firstLoad = false;
+            }
+            else
+            {
+                options.FirstLoad();
+            }
 
             bind.LoadKeyBindings();
             camera.enabled = true;
