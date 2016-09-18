@@ -25,7 +25,7 @@ namespace Snake
             EventHandler.eventHandler.addSegmentEvent += IncreaseSnakeLength;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             CheckSnakeLength();
             CheckSliderValue();

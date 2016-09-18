@@ -8,6 +8,7 @@ namespace Snake
     public class GameOver : MonoBehaviour
     {
         public GameObject gameOverUI;
+        public string[] lowHealthText;
 
         void Awake()
         {
@@ -33,12 +34,12 @@ namespace Snake
         //2 methods set the correct text for the loss condition
         void CollisionEndText()
         {
-            gameOverUI.GetComponentInChildren<Text>().text = "Stop Hitting Yourself";
+            gameOverUI.GetComponentInChildren<Text>().text = "Stop Touching Yourself";
         }
 
         void LowHealthText()
         {
-            gameOverUI.GetComponentInChildren<Text>().text = "You Ran out of Fire";
+            gameOverUI.GetComponentInChildren<Text>().text = lowHealthText[Random.Range(0, lowHealthText.Length)];
         }
 
         //shows the game over UI
