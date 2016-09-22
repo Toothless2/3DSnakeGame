@@ -1228,7 +1228,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3D Snake Game
+  m_Text: Snake Souls
 --- !u!222 &351481152
 CanvasRenderer:
   m_ObjectHideFlags: 0
