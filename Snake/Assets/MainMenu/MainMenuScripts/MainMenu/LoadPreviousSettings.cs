@@ -4,13 +4,13 @@ namespace Snake
 {
     public class LoadPreviousSettings : MonoBehaviour
     {
-        public Camera camera;
+        public Camera main;
         public GraphicsOptions options;
         public RebindKey bind;
 
         void Awake()
         {
-            camera.enabled = false;
+            main.enabled = false;
 
             Time.timeScale = 1;
 
@@ -31,7 +31,7 @@ namespace Snake
             }
 
             bind.LoadKeyBindings();
-            camera.enabled = true;
+            main.enabled = true;
         }
     }
 }
