@@ -27,6 +27,7 @@ namespace Snake
         //always called no matter how the game is ended
         void EndGame()
         {
+            Highscores.UploadScores(UserName.userName, GetComponent<LengthCounter>().number);
             StopTime();
             ShowUI();
         }

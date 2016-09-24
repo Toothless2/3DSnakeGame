@@ -7,7 +7,7 @@ namespace Snake
     public class LengthCounter : MonoBehaviour
     {
         public Text counter;
-        int number = 0;
+        public int number = 0;
 
         void Awake()
         {
@@ -24,7 +24,7 @@ namespace Snake
         //adds one to the length counter
         void AddToCounter()
         {
-            counter.text = "Length: " + number;
+            counter.text = "Score: " + number;
             number++;
         }
 
@@ -34,7 +34,7 @@ namespace Snake
             if(counter.enabled)
             {
                 number--;
-                counter.text = "Length: " + number;
+                counter.text = "Score: " + number;
             }
         }
     }
