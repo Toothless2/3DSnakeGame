@@ -12,6 +12,7 @@ namespace Snake
 
         public Highscore[] highscoresList;
         static Highscores instance;
+        public static string[] currentUserNames;
 
         void Awake()
         {
@@ -71,11 +72,13 @@ namespace Snake
         {
             string[] entries = textStream.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
             highscoresList = new Highscore[entries.Length];
+            currentUserNames = new string[entries.Length];
 
             for(int i = 0; i < entries.Length; i++)
             {
                 string[] entiryInfo = entries[i].Split(new char[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
 
+                currentUserNames[i] = entiryInfo[0];
                 highscoresList[i].name = entiryInfo[0];
                 highscoresList[i].score = int.Parse(entiryInfo[1]);
             }

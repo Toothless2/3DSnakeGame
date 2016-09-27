@@ -38,11 +38,32 @@ namespace Snake
 
             if(applyname)
             {
-                ApplyuserName();
+                //chescks for names that are already in use
+                if (CheckUserNames(userNameInput.text, Highscores.currentUserNames))
+                {
+                    ApplyuserName();
+                }
+                else
+                {
+                    userNameInput.text = "Name is already in use";
+                }
             }
         }
 
-        private void ApplyuserName()
+        bool CheckUserNames(string desiredName, string[] currentNames)
+        {
+            for (int i = 0; i < currentNames.Length; i++)
+            {
+                if(desiredName == currentNames[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        void ApplyuserName()
         {
             SaveUserName();
             UserName.userName = userNameInput.text;
