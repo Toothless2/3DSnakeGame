@@ -35,7 +35,7 @@ namespace Snake
                 moveSpeed = Mathf.Clamp(moveSpeed, 0.0f, 10.0f);
 
                 //if the piece is to close to the one infrount stop
-                if (Vector3.Distance(transform.position, target.position) < 1.2)
+                if (Vector3.Distance(transform.position, target.position) < 2)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, target.position, 0);
                 }

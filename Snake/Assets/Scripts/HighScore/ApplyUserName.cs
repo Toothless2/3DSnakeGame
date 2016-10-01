@@ -76,17 +76,17 @@ namespace Snake
         {
             UserName username = new UserName(userNameInput.text);
 
-            File.WriteAllText(Application.dataPath + "/Resources/Username.json", JsonMapper.ToJson(username));
+            File.WriteAllText(Application.persistentDataPath + "/Username.json", JsonMapper.ToJson(username));
         }
 
         public void GetUserName()
         {
-            if(File.Exists(Application.dataPath + "/Resources/Username.json"))
+            if(File.Exists(Application.persistentDataPath + "/Username.json"))
             {
                 string username;
                 JsonData usernameJson;
 
-                username = File.ReadAllText(Application.dataPath + "/Resources/Username.json");
+                username = File.ReadAllText(Application.persistentDataPath + "/Username.json");
 
                 usernameJson = JsonMapper.ToObject(username);
                 

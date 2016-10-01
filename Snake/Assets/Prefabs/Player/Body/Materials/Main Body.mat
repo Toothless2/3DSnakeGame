@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: WaterProNighttime
-  m_Shader: {fileID: 4800000, guid: 1cac2e0bcc34e4b3cbb4bd85982eba83, type: 3}
-  m_ShaderKeywords: _NORMALMAP
+  m_Name: Main Body
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -18,7 +18,7 @@ Material:
     - first:
         name: _BumpMap
       second:
-        m_Texture: {fileID: 2800000, guid: 2dd3788f8589b40bf82a92d76ffc5091, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -46,12 +46,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _Fresnel
-      second:
-        m_Texture: {fileID: 2800000, guid: 5b5c5575fd4c74abd9f7b30862fb76a3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _MainTex
       second:
         m_Texture: {fileID: 0}
@@ -75,30 +69,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ReflectionTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ReflectiveColor
-      second:
-        m_Texture: {fileID: 2800000, guid: b725b62cfc9d04e4886735ab2a8107d1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ReflectiveColorCube
-      second:
-        m_Texture: {fileID: 8900000, guid: 15c6acc4f11254a04b03849245d80574, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _RefractionTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
         name: _BumpScale
@@ -113,10 +83,13 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _GlossMapScale
+      second: 1
+    - first:
         name: _Glossiness
       second: 0.5
     - first:
-        name: _InvFade
+        name: _GlossyReflections
       second: 1
     - first:
         name: _Metallic
@@ -131,11 +104,11 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _ReflDistort
-      second: 1.5
-    - first:
-        name: _RefrDistort
+        name: _SmoothnessTextureChannel
       second: 0
+    - first:
+        name: _SpecularHighlights
+      second: 1
     - first:
         name: _SrcBlend
       second: 1
@@ -143,51 +116,12 @@ Material:
         name: _UVSec
       second: 0
     - first:
-        name: _WaveScale
-      second: 0.15
-    - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
-        name: WaveSpeed
-      second: {r: 3, g: 3, b: 3, a: 1}
-    - first:
-        name: _BumpMap_ST
-      second: {r: 1, g: 1, b: 0, a: 0}
-    - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0.8000001, g: 0, b: 0.003704033, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _Fresnel_ST
-      second: {r: 1, g: 1, b: 0, a: 0}
-    - first:
-        name: _HorizonColor
-      second: {r: 0.10196079, g: 0.039215688, b: 0.1254902, a: 0}
-    - first:
-        name: _MainTex_ST
-      second: {r: 1, g: 1, b: 0, a: 0}
-    - first:
-        name: _ReflectionTex_ST
-      second: {r: 1, g: 1, b: 0, a: 0}
-    - first:
-        name: _ReflectiveColorCube_ST
-      second: {r: 1, g: 1, b: 0, a: 0}
-    - first:
-        name: _ReflectiveColor_ST
-      second: {r: 1, g: 1, b: 0, a: 0}
-    - first:
-        name: _RefrColor
-      second: {r: 0.15856405, g: 0.028114192, b: 0.19117647, a: 1}
-    - first:
-        name: _RefractionTex_ST
-      second: {r: 1, g: 1, b: 0, a: 0}
-    - first:
-        name: _TintColor
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
---- !u!1002 &2100001
-EditorExtensionImpl:
-  serializedVersion: 6
