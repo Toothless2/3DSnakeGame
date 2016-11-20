@@ -25,7 +25,7 @@ namespace Snake
         void UpdateTailPosition()
         {
             //if the distance is between this object and the target is less then 1.2 units it shouldnt move
-            if (Vector3.Distance(transform.position, target.position) < 1.2)
+            if (Vector3.Distance(transform.position, target.position) < 2)
             {
                 transform.LookAt(target);
             }

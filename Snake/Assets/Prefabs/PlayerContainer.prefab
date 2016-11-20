@@ -223,7 +223,7 @@ MonoBehaviour:
   bodyPieces: []
   index: 0
   bodyPart: {fileID: 1000012755842758, guid: 33407d638289f0147bccce115673df7a, type: 2}
-  tailPart: {fileID: 190760, guid: e4e7223f1d71f034cb38ab4de5108c71, type: 2}
+  tailPart: {fileID: 1000011741861000, guid: a5280a3d4e7e4f845817045829e07399, type: 2}
 --- !u!114 &11481724
 MonoBehaviour:
   m_ObjectHideFlags: 1
