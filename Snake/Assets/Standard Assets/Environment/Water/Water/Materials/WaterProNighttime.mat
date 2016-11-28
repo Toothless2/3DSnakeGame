@@ -48,7 +48,7 @@ Material:
     - first:
         name: _Fresnel
       second:
-        m_Texture: {fileID: 2800000, guid: 5b5c5575fd4c74abd9f7b30862fb76a3, type: 3}
+        m_Texture: {fileID: 2800000, guid: ab97f9ab7c2ce724ebc9446060a819a4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -84,7 +84,7 @@ Material:
     - first:
         name: _ReflectiveColor
       second:
-        m_Texture: {fileID: 2800000, guid: b725b62cfc9d04e4886735ab2a8107d1, type: 3}
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -144,14 +144,14 @@ Material:
       second: 0
     - first:
         name: _WaveScale
-      second: 0.15
+      second: 0.02
     - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
         name: WaveSpeed
-      second: {r: 3, g: 3, b: 3, a: 1}
+      second: {r: 0, g: 0, b: 10, a: 1}
     - first:
         name: _BumpMap_ST
       second: {r: 1, g: 1, b: 0, a: 0}
