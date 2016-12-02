@@ -49,15 +49,15 @@ namespace Snake
         
         void Start()
         {
-            Debug.Assert(CurrentKeybindings.lookSensitivity > 0);
+            Debug.Assert(Constants.lookSensitivity > 0);
 
             if (canLook)
             {
                 SetEvents();
 
-                if(CurrentKeybindings.lookSensitivity > 0)
+                if(Constants.lookSensitivity > 0)
                 {
-                    lookSensitivity = CurrentKeybindings.lookSensitivity;
+                    lookSensitivity = Constants.lookSensitivity;
                 }
                 else
                 {
@@ -81,10 +81,10 @@ namespace Snake
 
         void Update()
         {
-            Debug.Assert(Settings.FOV > 0);
+            Debug.Assert(Constants.FOV > 0);
 
             //allows controll of the FOV if the player camera
-            Camera.main.fieldOfView = Settings.FOV;
+            Camera.main.fieldOfView = Constants.FOV;
 
             if(canLook)
             {

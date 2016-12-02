@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using System.IO;
-using LitJson;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Snake
 {
@@ -47,22 +46,12 @@ namespace Snake
 
         //FOV options
         public Slider fOVSlider;
-        
+
         public void FirstLoad()
         {
             SetResolutions();
 
-            if(Screen.fullScreen)
-            {
-                fullscreen = true;
-                fullscreenToggleButton.isOn = true;
-            }
-            else
-            {
-                fullscreen = false;
-                fullscreenToggleButton.isOn = false;
-            }
-
+            UpdateFulscreenButton();
             RefreshRate();
             VSyncOptions();
             TextureQuality();
@@ -77,6 +66,21 @@ namespace Snake
         public void ToggleFullscreen()
         {
             fullscreen = !fullscreen;
+            UpdateFulscreenButton();
+        }
+
+        void UpdateFulscreenButton()
+        {
+            if (Screen.fullScreen)
+            {
+                fullscreen = true;
+                fullscreenToggleButton.isOn = true;
+            }
+            else
+            {
+                fullscreen = false;
+                fullscreenToggleButton.isOn = false;
+            }
         }
 
         //gets all of the resolutions avaliable the user
@@ -192,7 +196,7 @@ namespace Snake
 
         public void FOV()
         {
-            Settings.FOV = (int)fOVSlider.value;
+            Constants.FOV = (int)fOVSlider.value;
         }
 
         public void ResetToPrevious()
@@ -223,28 +227,38 @@ namespace Snake
         public void LoadSettings()
         {
             //it should never not exist but humas are idiots and will delets it as some point
-            if(File.Exists(Application.dataPath + "/Resources/Settings.json"))
+            if(File.Exists(Application.dataPath + "/Resources/Settings.dat"))
             {
-                string jsonData;
-                JsonData settingsData;
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream fs = new FileStream(Application.dataPath + "/Resources/Settings.dat", FileMode.Open, FileAccess.Read);
+                SaveGraphicsOptions optionsLoad = new SaveGraphicsOptions();
 
-                //the data from the json file is put into a string
-                jsonData = File.ReadAllText(Application.dataPath + "/Resources/Settings.json");
+                try
+                {
+                    optionsLoad = (SaveGraphicsOptions)bf.Deserialize(fs);
+                }
+                catch
+                {
+                    Debug.LogWarning("Oops somethign whent wrong deserializing options data");
+                }
+                finally
+                {
+                    fs.Close();
+                }
 
-                //the json data is formatted into a dictionary
-                settingsData = JsonMapper.ToObject(jsonData);
-
-                //the serrings are applied
-                fullscreen = (bool)settingsData["Fullscreen"];
-                refreshRateDropdown.value = currentRefreshRate = (int)settingsData["RefreshRate"];
-                resolutionDropdown.value = currentResolution = (int)settingsData["Resolution"];
-                vSyncDropdown.value = currentVSyncOption = (int)settingsData["VSyncOption"];
-                textureQualityDropdown.value = currentTextureQuality = (int)settingsData["TextureQuality"];
-                aADropdown.value = aADropdown.value = (int)settingsData["AAOption"];
-                anisotropicDropdown.value = anisotropicDropdown.value = (int)settingsData["AFOption"];
-                fOVSlider.value = currentFOVoption = (int)settingsData["FOV"];
+                //the settings are applied
+                Screen.fullScreen = optionsLoad.fullscreen;
+                refreshRateDropdown.value = currentRefreshRate = optionsLoad.currentRefreshRate;
+                resolutionDropdown.value = currentResolution = optionsLoad.currentResolution;
+                vSyncDropdown.value = currentVSyncOption = optionsLoad.currentVSyncOption;
+                textureQualityDropdown.value = currentTextureQuality = optionsLoad.currentTextureQuality;
+                aADropdown.value = aADropdown.value = optionsLoad.currentAAOption;
+                anisotropicDropdown.value = anisotropicDropdown.value = optionsLoad.currentAFOption;
+                fOVSlider.value = currentFOVoption = Constants.FOV = optionsLoad.currentFOVoption;
 
                 Debug.Assert(refreshRateDropdown.value == currentRefreshRate);
+
+                UpdateFulscreenButton();
             }
             else
             {
@@ -264,17 +278,49 @@ namespace Snake
             currentAFOption = anisotropicDropdown.value;
             currentFOVoption = (int)fOVSlider.value;
 
-            //saves the settings to the settings class
-            Settings settings = new Settings("Editing this File is NOT reccomended - if game crashes after editing DELETE THIS FILE", fullscreen, currentRefreshRate, currentResolution, currentVSyncOption, currentTextureQuality, currentAAOption, currentAFOption, (int)fOVSlider.value);
-            
-            //makes a JsonData object to that the variabls of the class can be converted
-            JsonData settingsJson;
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(Application.dataPath + "/Resources/Settings.dat", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            SaveGraphicsOptions optionsSave = new SaveGraphicsOptions(fullscreen, currentResolution, currentRefreshRate, currentVSyncOption, currentTextureQuality, currentAAOption, currentAFOption, currentFOVoption);
 
-            //converts the settings into JsonData
-            settingsJson = JsonMapper.ToJson(settings);
-
-            //writes the JsonData File
-            File.WriteAllText(Application.dataPath + "/Resources/Settings.json", settingsJson.ToString());
+            try
+            {
+                bf.Serialize(fs, optionsSave);
+            }
+            catch
+            {
+                Debug.LogWarning("Oops something whent wring serializing the options data");
+            }
+            finally
+            {
+                fs.Close();
+            }
         }
+    }
+
+    [System.Serializable]
+    public class SaveGraphicsOptions
+    {
+        public bool fullscreen;
+        public int currentResolution;
+        public int currentRefreshRate;
+        public int currentVSyncOption;
+        public int currentTextureQuality;
+        public int currentAAOption;
+        public int currentAFOption;
+        public int currentFOVoption;
+
+        public SaveGraphicsOptions(bool _fullscreen, int _resolution, int _refreshRate, int _vSync, int _TQ, int _AA, int _AF, int _FOV)
+        {
+            fullscreen = _fullscreen;
+            currentResolution = _resolution;
+            currentRefreshRate = _refreshRate;
+            currentVSyncOption = _vSync;
+            currentTextureQuality = _TQ;
+            currentAAOption = _AA;
+            currentAFOption = _AF;
+            currentFOVoption = _FOV;
+        }
+
+        public SaveGraphicsOptions(){}
     }
 }

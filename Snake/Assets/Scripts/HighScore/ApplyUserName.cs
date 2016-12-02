@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+//TODO Remove After a couple of versions
 using LitJson;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Snake
 {
@@ -41,7 +43,7 @@ namespace Snake
                 //chescks for names that are already in use
                 if (CheckUserNames(userNameInput.text, Highscores.currentUserNames))
                 {
-                    ApplyuserName();
+                    ApplyUsername();
                 }
                 else
                 {
@@ -63,10 +65,10 @@ namespace Snake
             return true;
         }
 
-        void ApplyuserName()
+        void ApplyUsername()
         {
             SaveUserName();
-            UserName.userName = userNameInput.text;
+            Constants.username = userNameInput.text;
 
             mainMenu.SetActive(true);
             gameObject.SetActive(false);
@@ -74,13 +76,29 @@ namespace Snake
 
         public void SaveUserName()
         {
-            UserName username = new UserName(userNameInput.text);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(Application.persistentDataPath + "/Username.dat", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            Username username = new Username(userNameInput.text);
 
-            File.WriteAllText(Application.persistentDataPath + "/Username.json", JsonMapper.ToJson(username));
+            bf.Serialize(fs, username);
         }
 
+        //TODO Remove after a couple of versions
+        void SaveUserNameFromJSON(string _username)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(Application.persistentDataPath + "/Username.dat", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            Username username = new Username(_username);
+
+            bf.Serialize(fs, username);
+
+            Constants.username = _username;
+        }
+
+        //Gets the user name
         public void GetUserName()
         {
+            //Old Format
             if(File.Exists(Application.persistentDataPath + "/Username.json"))
             {
                 string username;
@@ -89,9 +107,26 @@ namespace Snake
                 username = File.ReadAllText(Application.persistentDataPath + "/Username.json");
 
                 usernameJson = JsonMapper.ToObject(username);
-                
-                UserName.userName = usernameJson["userName"].ToString();
 
+                SaveUserNameFromJSON(usernameJson["userName"].ToString());
+                
+                File.Delete(Application.persistentDataPath + "/Username.json");
+
+                mainMenu.SetActive(true);
+                gameObject.SetActive(false);
+            }
+            //New Format
+            else if(File.Exists(Application.persistentDataPath + "/Username.dat"))
+            {
+                print(Application.persistentDataPath);
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream fs = new FileStream(Application.persistentDataPath + "/Username.dat", FileMode.Open, FileAccess.Read);
+                Username username = new Username();
+
+                username = (Username)bf.Deserialize(fs);
+                fs.Close();
+
+                Constants.username = username.username;
                 mainMenu.SetActive(true);
                 gameObject.SetActive(false);
             }
@@ -102,5 +137,18 @@ namespace Snake
             mainMenu.SetActive(false);
             gameObject.SetActive(true);
         }
+    }
+
+    [System.Serializable]
+    public class Username
+    {
+        public string username;
+
+        public Username(string _name)
+        {
+            username = _name;
+        }
+
+        public Username(){}
     }
 }

@@ -21,8 +21,6 @@ namespace Snake
 
         private PlayerSpeed speed;
 
-        private CurrentKeybindings keybindings;
-
         void Start()
         {
             SetEvents();
@@ -48,9 +46,9 @@ namespace Snake
         void MovePlayer()
         {
             #region SpeedUpInput
-            if (CurrentKeybindings.speedUp != KeyCode.None)
+            if (Constants.speedUp != KeyCode.None)
             {
-                if (Input.GetKeyDown(CurrentKeybindings.speedUp))
+                if (Input.GetKeyDown(Constants.speedUp))
                 {
                     moveSpeed++;
                 }
@@ -65,9 +63,9 @@ namespace Snake
             #endregion SpeedUpInput
 
             #region SpeedDownInput
-            if (CurrentKeybindings.speedDown != KeyCode.None)
+            if (Constants.speedDown != KeyCode.None)
             {
-                if (Input.GetKeyDown(CurrentKeybindings.speedDown))
+                if (Input.GetKeyDown(Constants.speedDown))
                 {
                     moveSpeed--;
                 }

@@ -8,7 +8,7 @@ namespace Snake
         {
             if(Time.time > 0.05f)
             {
-                Camera.main.fieldOfView = Settings.FOV;
+                Camera.main.fieldOfView = Constants.FOV;
             }
         }
     }
