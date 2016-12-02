@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Threading;
 using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
