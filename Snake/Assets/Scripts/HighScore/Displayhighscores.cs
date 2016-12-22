@@ -32,7 +32,7 @@ namespace Snake
                 }
                 else
                 {
-                    highscoreBoard[i].text = (i + 1) + ". Its Lonley Here :(";
+                    highscoreBoard[i].text = " ";
                 }
             }
             

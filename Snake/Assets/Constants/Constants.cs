@@ -6,6 +6,7 @@ namespace Snake
     {
         public static string username;
 
+        public static bool snowing;
         public static bool firstLoad = true;
 
         //Keybindings

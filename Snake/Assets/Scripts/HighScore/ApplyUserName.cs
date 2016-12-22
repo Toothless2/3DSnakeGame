@@ -118,7 +118,6 @@ namespace Snake
             //New Format
             else if(File.Exists(Application.persistentDataPath + "/Username.dat"))
             {
-                print(Application.persistentDataPath);
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream fs = new FileStream(Application.persistentDataPath + "/Username.dat", FileMode.Open, FileAccess.Read);
                 Username username = new Username();
