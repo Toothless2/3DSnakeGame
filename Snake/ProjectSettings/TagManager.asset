@@ -14,9 +14,9 @@ TagManager:
   - 
   - 
   - Room
-  - 
-  - 
-  - 
+  - ClassicLayer
+  - DuelingLayer
+  - HellLayer
   - 
   - 
   - 

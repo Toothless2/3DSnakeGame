@@ -16,6 +16,8 @@ namespace Snake
 
         void Awake()
         {
+            gameObject.layer = Constants.Layer();
+            gameObject.transform.parent.gameObject.layer = Constants.Layer();
             SetEvents();
         }
 
@@ -69,6 +71,7 @@ namespace Snake
             index++;
             newPart.GetComponent<BodyScript>().index = index;
             newPart.GetComponent<BodyScript>().target = bodyPieces[index - 1].transform;
+            newPart.layer = Constants.Layer();
 
             transform.parent.GetComponent<PlayerSpeed>().index = index;
 
@@ -125,6 +128,7 @@ namespace Snake
             currentTail.transform.SetAsLastSibling();
 
             currentTail.GetComponent<TailScript>().target = bodyPieces[index].transform;
+            currentTail.layer = Constants.Layer();
         }
     }
 }

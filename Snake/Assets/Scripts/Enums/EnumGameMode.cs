@@ -1,4 +1,4 @@
 ﻿public enum EnumGameMode
 {
-    CALSSIC
+    CLASSIC, DUELING, HELL
 };

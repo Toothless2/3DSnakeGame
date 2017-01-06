@@ -7,6 +7,7 @@ namespace Snake
     {
         public void PlayeSinglePlayer()
         {
+            Constants.gameMode = EnumGameMode.CLASSIC;
             SceneManager.LoadScene("SinglePlayer");
         }
     }

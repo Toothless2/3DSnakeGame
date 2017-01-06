@@ -4,6 +4,8 @@ namespace Snake
 {
 	public static class Constants
     {
+        public static EnumGameMode gameMode;
+
         public static string username;
 
         public static bool snowing;
@@ -18,5 +20,20 @@ namespace Snake
 
         //Options
         public static int FOV;
+        
+        public static LayerMask Layer()
+        {
+            switch (gameMode)
+            {
+                case EnumGameMode.CLASSIC:
+                    return LayerMask.NameToLayer("ClassicLayer");
+                case EnumGameMode.DUELING:
+                    return LayerMask.NameToLayer("DuelingLayer");
+                case EnumGameMode.HELL:
+                    return LayerMask.NameToLayer("HellLayer");
+                default:
+                    return LayerMask.NameToLayer("ClassicLayer");
+            }
+        }
     }
 }

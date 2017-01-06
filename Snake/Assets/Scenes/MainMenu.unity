@@ -3119,8 +3119,6 @@ MonoBehaviour:
   main: {fileID: 1557130788}
   options: {fileID: 1789110765}
   bind: {fileID: 2125946837}
-  randomNumber: 0
-  thresHold: 0
 --- !u!4 &542394383 stripped
 Transform:
   m_PrefabParentObject: {fileID: 427468, guid: f8677827719a7564cb7e1ae32b41eb59, type: 2}
@@ -12949,7 +12947,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2131985939
+  randomSeed: -2132169659
   InitialModule:
     serializedVersion: 3
     enabled: 1
